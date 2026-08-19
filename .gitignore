@@ -1,3 +1,4 @@
-# Ignore large binary videos (>100MB exceeds GitHub hard limit)
-video/*.mp4
-*.mp4
+# Standard gitignore
+node_modules/
+.DS_Store
+Thumbs.db
