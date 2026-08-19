@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube – Aesthetic Cinema</title>
+  <meta name="description" content="A content-first YouTube homepage experience with balanced Chili Red logo, full-screen aesthetic video background, 3D vault orbit, and decent quiet sign-in section.">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-black text-white antialiased selection:bg-zinc-700 selection:text-white">
+
+  <!-- ==========================================================================
+       ATMOSPHERIC CLOUD SKY SYSTEM (IGLOO.INC BACKGROUND)
+       ========================================================================== -->
+  <div class="igloo-sky-system" id="iglooSkySystem">
+    <div class="cloud-layer cloud-layer-1"></div>
+    <div class="cloud-layer cloud-layer-2"></div>
+    <div class="cloud-layer cloud-layer-3"></div>
+    <div class="volumetric-light-beam"></div>
+    <div class="sky-vignette"></div>
+
+    <!-- Living Video Canvas for Layer Transitions -->
+    <video id="bgVideoA" class="bg-video active" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4"></video>
+    <video id="bgVideoB" class="bg-video" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-flowing-lines-of-light-31780-large.mp4"></video>
+  </div>
+
+  <!-- ==========================================================================
+       OPENING INTRO OVERLAY (CLEAN PITCH BLACK + FREE FLOATING LOGO)
+       ========================================================================== -->
+  <div id="introOverlay" class="intro-overlay">
+    <button id="skipIntroBtn" class="skip-intro-btn">
+      Skip Intro <i class="fa-solid fa-forward-step ml-1"></i>
+    </button>
+
+    <div class="intro-stage">
+      <div id="introLogoWrapper" class="intro-logo-wrapper">
+        <!-- Freely Floating Attractive YouTube Logo (NO OUTER BOX FRAME) -->
+        <div class="free-floating-logo">
+          <div class="brand-play-icon-large">
+            <i class="fa-solid fa-play"></i>
+          </div>
+          <span class="intro-wordmark">YouTube</span>
+          <span class="intro-badge">CINEMA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header id="mainHeader" class="main-header">
+    <div class="header-container">
+
+      <!-- Logo -->
+      <div class="brand-group" id="headerLogo">
+        <div class="brand-play-icon"><i class="fa-solid fa-play"></i></div>
+        <span class="brand-wordmark">YouTube</span>
+        <span class="brand-tag">CINEMA</span>
+      </div>
+
+      <!-- Center Nav -->
+      <nav class="header-nav" id="headerNav">
+        <a href="#layerSky" class="nav-link active-nav-link">Home</a>
+        <a href="#layerWorlds" class="nav-link">Explore</a>
+        <a href="#layerVault" class="nav-link">Discover</a>
+        <a href="#layerCategories" class="nav-link">Categories</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
+        </div>
+        <button class="icon-action-btn" title="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <a href="#signin" class="btn-signin" id="signInBtn">Sign in</a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="mainApp" class="main-app igloo-journey-container">
+    <!-- LAYER 1: HERO VIDEO -->
+    <section class="igloo-layer layer-1-sky" id="layerSky">
+      <div class="hero-video-background">
+        <video id="heroLocalVideo" class="hero-bg-video active" autoplay loop muted playsinline src="video/hero background video.mp4"></video>
+        <div id="heroSceneA" class="hero-scenery-layer"></div>
+        <div id="heroSceneB" class="hero-scenery-layer"></div>
+        <div class="hero-video-vignette"></div>
+      </div>
+
+      <!-- Hero Text -->
+      <div class="hero-text-overlay">
+        <h1 class="hero-headline">
+          Watch What<br>
+          <span class="hero-headline-accent">Matters.</span>
+        </h1>
+        <p class="hero-subline">Your world of cinema, vlogs &amp; stories — beautifully curated.</p>
+        <div class="hero-cta-group">
+          <a href="#layerWorlds" class="hero-btn-primary">
+            <i class="fa-solid fa-play"></i> Start Exploring
+          </a>
+          <a href="#layerCategories" class="hero-btn-secondary">
+            Browse Categories <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================================
+         LAYER 2: FLOATING CATEGORY WORLDS (ATMOSPHERIC DESCENT & PARALLEL TRACKS)
+         ======================================================================== -->
+    <section class="igloo-layer layer-2-worlds" id="layerWorlds">
+      <div class="layer-header text-center">
+        <span class="layer-step-tag">ATMOSPHERIC LAYER 02</span>
+        <h2 class="layer-heading">What are you in the mood for?</h2>
+        <p class="layer-desc">Hover over any floating world to crossfade the living atmospheric sky.</p>
+      </div>
+
+      <!-- Parallel Scroll Outer Stage -->
+      <div class="parallel-scroll-wrapper" id="parallelScrollStage">
+        <!-- Track 1: Moves LEFT on Scroll Down -->
+        <div class="parallel-track track-left" id="trackLeft">
+          
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4" data-title="Midnight Rain & City Lights" data-channel="Focus Fuel">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80" alt="Late Night">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">TRENDING</span>
+              <h3 class="vocal-title">Late Night</h3>
+              <p class="vocal-desc">Midnight rain, lo-fi beats, and calm ambient city lights.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-flowing-lines-of-light-31780-large.mp4" data-title="Deep Work Flow State" data-channel="Productivity Lab">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80" alt="Deep Focus">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">SPATIAL</span>
+              <h3 class="vocal-title">Deep Focus</h3>
+              <p class="vocal-desc">Minimalist acoustic architecture for unbroken concentration.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" data-title="Slow Morning Coffee Routine" data-channel="Warm Daylight">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?auto=format&fit=crop&w=800&q=80" alt="Sunday Mood">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">NEW</span>
+              <h3 class="vocal-title">Sunday Mood</h3>
+              <p class="vocal-desc">Warm morning sun, acoustic guitars, and calm leisure.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-traveling-through-a-glowing-nebula-in-space-41584-large.mp4" data-title="Deep Space Explorations" data-channel="Space Science">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Cosmic Wonders">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">POPULAR</span>
+              <h3 class="vocal-title">Cosmic Wonders</h3>
+              <p class="vocal-desc">Deep science breakdowns, astronomy, and historical mysteries.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" data-title="Tokyo Street Food Odyssey" data-channel="Gourmet Street">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80" alt="Night Market">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">GOURMET</span>
+              <h3 class="vocal-title">Night Market</h3>
+              <p class="vocal-desc">Shinjuku midnight ramen alleys and sizzling yakitori stalls.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" data-title="Nordic Cabin Fireplace" data-channel="Cozy Living">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1542224566-6e85f2e6772f?auto=format&fit=crop&w=800&q=80" alt="Winter Warmth">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">COZY</span>
+              <h3 class="vocal-title">Winter Warmth</h3>
+              <p class="vocal-desc">Crackling cedar fireplace, pine snowfall, and hot herbal tea.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4" data-title="Alpine Glacial Echoes" data-channel="Nature Sounds">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Serene Horizons">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">4K NATURE</span>
+              <h3 class="vocal-title">Serene Horizons</h3>
+              <p class="vocal-desc">Glacier mountain winds, untouched snow peaks, and peaceful sunsets.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Track 2: Moves RIGHT on Scroll Down -->
+        <div class="parallel-track track-right" id="trackRight">
+          
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" data-title="Nature 8K High Dynamic Range" data-channel="BBC Earth">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Pure Cinema">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">4K HDR</span>
+              <h3 class="vocal-title">Pure Cinema</h3>
+              <p class="vocal-desc">High-frame rate visual masterpieces & nature landscapes.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-smartphones-at-a-concert-41566-large.mp4" data-title="Hans Zimmer Live in Concert" data-channel="Orchestra Live">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" alt="Live & Rising">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">LIVE NOW</span>
+              <h3 class="vocal-title">Live & Rising</h3>
+              <p class="vocal-desc">Acoustic concert stages, live broadcasts, and rising icons.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4" data-title="Documentary Film Production" data-channel="Cinema Craft">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80" alt="Creator Masterpieces">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">FEATURED</span>
+              <h3 class="vocal-title">Creator Stories</h3>
+              <p class="vocal-desc">High-production indie documentaries and cinematic visual essays.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-flowing-lines-of-light-31780-large.mp4" data-title="Spatial Dolby Atmos Audio" data-channel="Spatial Lab">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80" alt="Spatial Audio">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">DOLBY ATMOS</span>
+              <h3 class="vocal-title">Spatial Audio</h3>
+              <p class="vocal-desc">3D binaural audio landscapes and acoustic field visualizers.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" data-title="Artisan Sourdough Baking" data-channel="Chef Guild">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Culinary Craft">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">CHEF TABLE</span>
+              <h3 class="vocal-title">Culinary Craft</h3>
+              <p class="vocal-desc">Artisan woodfire baking and sensory kitchen masterclasses.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4" data-title="Kyoto Zen Meditation" data-channel="Orient Cinema">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" alt="Zen Meditation">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">PEACEFUL</span>
+              <h3 class="vocal-title">Zen Gardens</h3>
+              <p class="vocal-desc">Bamboo grove sunbeams, stone ponds, and quiet temple bells.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+          <div class="vocal-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-traveling-through-a-glowing-nebula-in-space-41584-large.mp4" data-title="Cyberpunk Synthwave Journey" data-channel="Synth Beats">
+            <div class="vocal-card-bg">
+              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="Neon Dreams">
+              <div class="vocal-card-overlay"></div>
+            </div>
+            <div class="vocal-card-body">
+              <span class="vocal-badge">SYNTHWAVE</span>
+              <h3 class="vocal-title">Neon Dreams</h3>
+              <p class="vocal-desc">Retro synthwave beats, holographic skylines, and analog drives.</p>
+              <div class="vocal-footer"><span class="btn-vocal-enter">Enter World <i class="fa-solid fa-arrow-right"></i></span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYER 3: INTERACTIVE CONTENT DISCOVERY VAULT -->
+    <section class="igloo-layer layer-3-vault" id="layerVault">
+      <div class="layer-header text-center vault-header-clean">
+        <h2 class="layer-heading vault-hero-title">Cinematic Exploration Sphere</h2>
+      </div>
+
+      <!-- 3D Orbiting Stage Container -->
+      <div class="vault-orbit-stage" id="vaultOrbitStage">
+        <!-- Soft Glowing Abstract Vault Core Orb -->
+        <div class="vault-core-orb" id="vaultCoreOrb">
+          <div class="orb-inner-glow"></div>
+          <div class="orb-pulse-ring"></div>
+        </div>
+
+        <!-- 6 Floating Orbit Cards -->
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-traveling-through-a-glowing-nebula-in-space-41584-large.mp4" data-title="Interstellar Odyssey" data-channel="NASA Media Lab" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=600&q=80" alt="Interstellar">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">4K HDR DOCUMENTARY</span>
+            <h4 class="voc-title">Interstellar Odyssey</h4>
+            <p class="voc-desc">A deep-space cinematic journey exploring the farthest nebulae.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-stars-in-the-night-sky-4010-large.mp4" data-title="The Hidden Kingdom" data-channel="Anime Masters" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80" alt="Anime Kingdom">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">EDITOR'S CHOICE</span>
+            <h4 class="voc-title">The Hidden Kingdom</h4>
+            <p class="voc-desc">Five decades of legendary Japanese hand-drawn animation history.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-hands-holding-smartphones-at-a-concert-41566-large.mp4" data-title="Hans Zimmer Orchestra" data-channel="Live Stage" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Concert Live">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">SPATIAL ATMOS</span>
+            <h4 class="voc-title">Hans Zimmer Orchestra</h4>
+            <p class="voc-desc">Live acoustic symphonic concert recorded in spatial 3D audio.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" data-title="Norwegian Fjords 8K" data-channel="BBC Earth" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=600&q=80" alt="Norwegian Fjords">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">NATURE CINEMA</span>
+            <h4 class="voc-title">Norwegian Fjords 8K</h4>
+            <p class="voc-desc">High-frame rate aerial landscapes over pristine arctic waters.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-abstract-fast-flowing-lines-of-light-31780-large.mp4" data-title="Tokyo Cyberpunk Walk" data-channel="Indie Cinema" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="Tokyo Cyberpunk">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">INDIE ESSAY</span>
+            <h4 class="voc-title">Tokyo Cyberpunk Walk</h4>
+            <p class="voc-desc">Midnight rain stroll through neon alleys and analog synth vibes.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+
+        <div class="vault-orbit-card" data-bg-video="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" data-title="Espresso Extraction Art" data-channel="Acoustic Craft" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1">
+          <div class="voc-img-box">
+            <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=600&q=80" alt="Coffee Craft">
+            <div class="voc-vignette"></div>
+          </div>
+          <div class="voc-content">
+            <span class="voc-badge">SLOW CINEMA</span>
+            <h4 class="voc-title">Espresso Extraction Art</h4>
+            <p class="voc-desc">Macro slow-motion morning ritual with acoustic guitar ambience.</p>
+            <button class="btn-voc-play"><i class="fa-solid fa-play"></i> Watch Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         NEW SECTION: EXPLORE BY CATEGORY (INTERACTIVE CATEGORY MATRIX)
+         ======================================================================== -->
+    <section class="igloo-layer layer-categories" id="layerCategories">
+      <div class="layer-header text-center">
+        <h2 class="layer-heading categories-hero-title">Explore By Category</h2>
+      </div>
+
+      <!-- Modern Bento Category Showcase -->
+      <div class="category-bento-grid">
+        
+        <!-- Bento Card 1: Nature & Scenery (Large Featured Spotlight) -->
+        <div class="category-card bento-featured bento-nature" data-category="nature">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=85" alt="Nature & Alpine Scenery">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content">
+            <div class="cat-top-meta">
+              <div class="cat-pill-group">
+                <span class="cat-badge-spotlight"><i class="fa-solid fa-sparkles"></i> FEATURED SHOWCASE</span>
+                <span class="cat-count-badge">1.4K Masterpieces</span>
+              </div>
+              <span class="cat-icon-badge"><i class="fa-solid fa-tree"></i></span>
+            </div>
+            <div class="cat-main-info">
+              <h3 class="cat-title">Nature &amp; Alpine Scenery</h3>
+              <p class="cat-desc">Misty pine forests, 8K mountain sunrises, cinematic drone voyages, and soothing coastal horizons.</p>
+              <div class="cat-tags-row">
+                <span class="cat-micro-tag">4K HDR</span>
+                <span class="cat-micro-tag">Aerial Drone</span>
+                <span class="cat-micro-tag">Calming Scenery</span>
+              </div>
+            </div>
+            <div class="cat-footer">
+              <span class="cat-explore-btn">Explore Nature <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2: Travel & Wanderlust (Companion Card) -->
+        <div class="category-card bento-travel" data-category="travel">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1000&q=85" alt="Travel & Wanderlust">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content">
+            <div class="cat-top-meta">
+              <div class="cat-pill-group">
+                <span class="cat-badge-sub">GLOBAL EXPEDITIONS</span>
+              </div>
+              <span class="cat-icon-badge"><i class="fa-solid fa-plane"></i></span>
+            </div>
+            <div class="cat-main-info">
+              <h3 class="cat-title">Travel &amp; Wanderlust</h3>
+              <p class="cat-desc">Tokyo neon nightwalks, Mediterranean coastal escapes, and hidden nomadic journeys.</p>
+              <div class="cat-tags-row">
+                <span class="cat-micro-tag">City Vlogs</span>
+                <span class="cat-micro-tag">Cultural Essays</span>
+              </div>
+            </div>
+            <div class="cat-footer">
+              <span class="cat-explore-btn">Explore Travel <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 3: Lofi & Slow Living -->
+        <div class="category-card bento-lofi" data-category="lofi">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1000&q=85" alt="Lofi & Slow Living">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content">
+            <div class="cat-top-meta">
+              <span class="cat-badge-sub">COZY FOCUS</span>
+              <span class="cat-icon-badge"><i class="fa-solid fa-mug-hot"></i></span>
+            </div>
+            <div class="cat-main-info">
+              <h3 class="cat-title">Lofi &amp; Slow Living</h3>
+              <p class="cat-desc">Espresso coffee rituals, rainy window study sessions, and analog vinyl warmth.</p>
+            </div>
+            <div class="cat-footer">
+              <span class="cat-explore-btn">Enter World <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 4: Culinary & Gourmet Arts -->
+        <div class="category-card bento-culinary" data-category="culinary">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85" alt="Culinary Arts">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content">
+            <div class="cat-top-meta">
+              <span class="cat-badge-sub">ARTISAN CRAFT</span>
+              <span class="cat-icon-badge"><i class="fa-solid fa-utensils"></i></span>
+            </div>
+            <div class="cat-main-info">
+              <h3 class="cat-title">Culinary &amp; Gourmet</h3>
+              <p class="cat-desc">Artisan sourdough baking, woodfire gastronomy, and chef masterclasses.</p>
+            </div>
+            <div class="cat-footer">
+              <span class="cat-explore-btn">Enter World <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 5: Indie Cinema & Shorts -->
+        <div class="category-card bento-cinema" data-category="cinema">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85" alt="Indie Cinema">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content">
+            <div class="cat-top-meta">
+              <span class="cat-badge-sub">CRITIC'S CHOICE</span>
+              <span class="cat-icon-badge"><i class="fa-solid fa-film"></i></span>
+            </div>
+            <div class="cat-main-info">
+              <h3 class="cat-title">Indie Cinema &amp; Shorts</h3>
+              <p class="cat-desc">Award-winning visual essays, 35mm film craft, and storytelling retrospectives.</p>
+            </div>
+            <div class="cat-footer">
+              <span class="cat-explore-btn">Enter World <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 6: Music & Ambient Beats (Widescreen Soundstage Banner) -->
+        <div class="category-card bento-panoramic bento-music" data-category="music">
+          <div class="cat-card-bg">
+            <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&w=1600&q=85" alt="Music & Ambient Beats">
+            <div class="cat-card-overlay"></div>
+            <div class="cat-ambient-glow"></div>
+          </div>
+          <div class="cat-card-content bento-panoramic-content">
+            <div class="bento-pano-left">
+              <div class="cat-top-meta">
+                <div class="cat-pill-group">
+                  <span class="cat-badge-spotlight"><i class="fa-solid fa-wave-square"></i> SPATIAL DOLBY ATMOS</span>
+                  <span class="cat-count-badge">3.2K Soundscapes</span>
+                </div>
+              </div>
+              <h3 class="cat-title">Music, Beats &amp; Sonic Realms</h3>
+              <p class="cat-desc">Live symphonic stages, 3D binaural field recordings, acoustic guitars, and continuous lo-fi chillhop broadcasts.</p>
+            </div>
+            <div class="bento-pano-right">
+              <div class="cat-soundwave-box">
+                <div class="cat-soundbar"></div>
+                <div class="cat-soundbar"></div>
+                <div class="cat-soundbar"></div>
+                <div class="cat-soundbar"></div>
+                <div class="cat-soundbar"></div>
+              </div>
+              <span class="cat-explore-btn cat-btn-pill">Stream Audio <i class="fa-solid fa-play ml-1"></i></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         LAYER 4: DECENT & QUIET LUXURY SIGN IN SECTION (ZERO PARTICLES, ZERO GLOW)
+         ======================================================================== -->
+    <section class="igloo-layer layer-4-horizon" id="layerHorizon">
+      
+      <!-- Decent Sign In Stage Container -->
+      <div class="decent-login-container">
+        <div class="decent-login-header text-center">
+          <span class="layer-step-tag">DECENT & LUXURY ACCESS</span>
+          <h2 class="decent-heading">Your next favorite story<br>begins right here.</h2>
+          <p class="decent-subtext">Join millions of creators, curators, and film lovers across the global YouTube Cinema network.</p>
+        </div>
+
+        <div class="decent-login-actions">
+          <button class="btn-decent-primary" id="horizonCreateAccountBtn">
+            <i class="fa-solid fa-user-plus"></i> Create Free Account
+          </button>
+          <button class="btn-decent-outline" id="horizonSignInBtn">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In to YouTube
+          </button>
+        </div>
+      </div>
+
+      <!-- Refined Minimalist Luxury Footer -->
+      <footer class="main-footer">
+        <div class="footer-container">
+          
+          <!-- Top Grid Section -->
+          <div class="footer-main-grid">
+            
+            <!-- Brand & Mission Column -->
+            <div class="footer-col footer-col-brand">
+              <div class="footer-brand">
+                <div class="brand-play-icon"><i class="fa-solid fa-play"></i></div>
+                <span class="brand-wordmark">YouTube</span>
+                <span class="brand-tag">CINEMA</span>
+              </div>
+              <p class="footer-mission-text">
+                An atmospheric, content-first video destination curated for peaceful scenery, cinematic documentaries, and high-fidelity sonic experiences.
+              </p>
+              <div class="footer-social-row">
+                <a href="#" class="footer-social-btn" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="footer-social-btn" title="X / Twitter" aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="footer-social-btn" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="footer-social-btn" title="Discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="footer-social-btn" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              </div>
+            </div>
+
+            <!-- Links Column 1: Journey -->
+            <div class="footer-col">
+              <h4 class="footer-col-title">Navigation</h4>
+              <ul class="footer-nav-list">
+                <li><a href="#layerSky">Stratosphere</a></li>
+                <li><a href="#layerWorlds">Floating Worlds</a></li>
+                <li><a href="#layerVault">Discovery Vault</a></li>
+                <li><a href="#layerCategories">Curated Categories</a></li>
+                <li><a href="#layerHorizon">Horizon Access</a></li>
+              </ul>
+            </div>
+
+            <!-- Links Column 2: Highlights -->
+            <div class="footer-col">
+              <h4 class="footer-col-title">Experience</h4>
+              <ul class="footer-nav-list">
+                <li><a href="#layerCategories">Spatial Dolby Atmos</a></li>
+                <li><a href="#layerVault">4K HDR Documentaries</a></li>
+                <li><a href="#layerWorlds">Slow Living &amp; Lo-Fi</a></li>
+                <li><a href="#layerCategories">Nature &amp; Scenery</a></li>
+                <li><a href="#layerCategories">Indie Cinema &amp; Shorts</a></li>
+              </ul>
+            </div>
+
+            <!-- Newsletter / Stay Updated Column -->
+            <div class="footer-col footer-col-subscribe">
+              <h4 class="footer-col-title">Weekly Curation</h4>
+              <p class="footer-sub-desc">Receive a Friday drop of hand-selected 4K visual masterworks directly to your inbox.</p>
+              <form class="footer-newsletter-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Enter your email..." required class="footer-email-input">
+                <button type="submit" class="footer-sub-btn">Join <i class="fa-solid fa-arrow-right"></i></button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- Divider -->
+          <div class="footer-divider"></div>
+
+          <!-- Bottom Utility Bar -->
+          <div class="footer-bottom">
+            <div class="footer-bottom-left">
+              <p>© 2026 YouTube Cinema. All rights reserved.</p>
+              <div class="footer-legal-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+                <span>•</span>
+                <a href="#">Security</a>
+              </div>
+            </div>
+
+            <div class="footer-bottom-right">
+              <div class="system-status-indicator">
+                <span class="status-pulse-dot"></span>
+                <span>All Cinema Streams Operational</span>
+              </div>
+              <button id="footerReplayBtn" class="footer-replay-btn">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Replay Intro
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- FULLSCREEN VIDEO PLAYER MODAL -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-backdrop" id="modalBackdrop"></div>
+    <div class="video-modal-content">
+      <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+      <div class="player-wrapper">
+        <iframe id="videoIframe" src="" title="YouTube Video Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="modal-info">
+        <h2 id="modalTitle">Video Title</h2>
+        <div class="modal-meta"><span id="modalChannel">Channel Name</span> • <span id="modalViews">0 views</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EASTER EGG MODAL -->
+  <div id="easterModal" class="easter-modal">
+    <div class="easter-content">
+      <button class="easter-close" id="closeEasterBtn">&times;</button>
+      <div class="easter-header">
+        <i class="fa-solid fa-ghost text-zinc-300 text-3xl"></i>
+        <h3>SECRET KONAMI CODE UNLOCKED!</h3>
+      </div>
+      <p>You unlocked the Cyberpunk Matrix Mode! Enjoy retro neon glowing visuals across the platform.</p>
+      <button class="btn-luxury-primary mt-4" id="toggleMatrixModeBtn">Toggle Retro Matrix FX</button>
+    </div>
+  </div>
+
+  <!-- CINEMATIC SIGN IN EXPERIENCE MODAL -->
+  <div class="signin-modal" id="signInModal" aria-hidden="true">
+    <div class="signin-backdrop" id="signInBackdrop"></div>
+    
+    <div class="signin-panel" id="signInPanel">
+      <!-- Subtle Close Button -->
+      <button class="signin-close-btn" id="closeSignInBtn" aria-label="Close Sign In">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Panel Header with Branding -->
+      <div class="signin-header">
+        <div class="signin-brand-badge">
+          <div class="brand-play-icon-sm"><i class="fa-solid fa-play"></i></div>
+          <span class="signin-wordmark">YouTube</span>
+          <span class="signin-badge-tag">CINEMA</span>
+        </div>
+        <h2 class="signin-title">Welcome Back</h2>
+        <p class="signin-subtitle">Enter your details to access your curated streams and saved worlds.</p>
+      </div>
+
+      <!-- Social Login / Continue with Google -->
+      <div class="signin-social-section">
+        <button type="button" class="btn-google-auth" id="googleAuthBtn">
+          <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.98 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+      </div>
+
+      <div class="signin-divider">
+        <span>or continue with email</span>
+      </div>
+
+      <!-- High-End Form -->
+      <form class="signin-form" id="signInForm">
+        <div class="form-group">
+          <label for="signinEmail" class="form-label">Email Address</label>
+          <div class="input-wrapper">
+            <i class="fa-regular fa-envelope input-icon"></i>
+            <input type="email" id="signinEmail" placeholder="name@cinema.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="signinPassword" class="form-label">Password</label>
+            <a href="#" class="forgot-link" onclick="event.preventDefault();">Forgot password?</a>
+          </div>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="signinPassword" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-pwd" id="togglePwdBtn" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="custom-checkbox">
+            <input type="checkbox" checked id="rememberMe">
+            <span class="checkmark"></span>
+            <span class="checkbox-text">Keep me signed in</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-signin-submit" id="submitSignInBtn">
+          <span>Sign In to Cinema</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- Footer / Switch to Sign Up -->
+      <div class="signin-footer">
+        <p>Don't have an account? <a href="#" class="signup-link" id="switchToSignUp">Create account</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Application Modular Scripts -->
+  <script src="js/bgVideoEngine.js"></script>
+  <script src="js/vocalCards.js"></script>
+  <script src="js/heroVideoBg.js"></script>
+  <script src="js/vaultOrbit.js"></script>
+  <script src="js/iglooScroll.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/easterEgg.js"></script>
+  <script src="js/videoPlayer.js"></script>
+  <script src="js/signInModal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
