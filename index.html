@@ -81,10 +81,39 @@
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
           <input type="text" id="searchInput" placeholder="Search..." autocomplete="off">
         </div>
-        <button class="icon-action-btn" title="Notifications">
-          <i class="fa-regular fa-bell"></i>
-          <span class="notif-dot"></span>
-        </button>
+        <div class="header-notif-wrapper">
+          <button class="icon-action-btn" id="notifBtn" title="Notifications" aria-label="View notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notif-dot" id="notifDot"></span>
+          </button>
+          
+          <!-- Cinematic Notification Popover -->
+          <div class="notif-popover" id="notifPopover" aria-hidden="true">
+            <div class="notif-popover-header">
+              <div class="notif-badge-group">
+                <span class="notif-popover-badge">✨ SPECIAL MESSAGE</span>
+                <span class="notif-time">Just now</span>
+              </div>
+              <button class="notif-popover-close" id="closeNotifBtn" aria-label="Close notification">&times;</button>
+            </div>
+            
+            <div class="notif-popover-body">
+              <div class="notif-msg-card">
+                <p class="notif-msg-primary">
+                  🌟 If you’re reading this, it means you went the extra mile — just like I did on this project. 🚀
+                </p>
+                <div class="notif-msg-divider"></div>
+                <p class="notif-msg-secondary">
+                  🎬 Reserved for the <strong>Acdyon</strong> team. Thanks for taking a closer look. 🤝✨
+                </p>
+              </div>
+            </div>
+
+            <div class="notif-popover-footer">
+              <span class="notif-footer-tag"><i class="fa-solid fa-heart text-red-500"></i> Crafted with passion • YouTube Cinema</span>
+            </div>
+          </div>
+        </div>
         <a href="#signin" class="btn-signin" id="signInBtn">Sign in</a>
       </div>
 
@@ -833,6 +862,7 @@
   <script src="js/easterEgg.js"></script>
   <script src="js/videoPlayer.js"></script>
   <script src="js/signInModal.js"></script>
+  <script src="js/notificationPopover.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
