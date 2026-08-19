@@ -1,24 +1,25 @@
-# Engineering & Architectural Decisions
+# Architectural & Design Decisions
 
-## 1. Why this ingestion strategy over the obvious alternative you rejected?
-* **Chosen Ingestion Strategy:** High-performance, declarative client-side asset orchestration with decoupled ES6 modular engines (`heroVideoBg.js`, `vaultOrbit.js`, `vocalCards.js`, `signInModal.js`) feeding off curated high-bitrate media descriptors and native HTML5 video/DOM rendering.
-* **Rejected Alternative:** A monolithic framework setup (e.g., heavy Next.js/React bundle with client-side hydration, external state managers, and runtime API dependencies) or full YouTube Data API v3 polling on initial paint.
-* **Rationale:** Video-heavy cinematic landing experiences require instant Largest Contentful Paint (LCP) and zero-layout-shift (CLS) without bundle initialization delays or third-party API rate-limit bottlenecks. Using zero-dependency vanilla JS engines with hardware-accelerated CSS `translate3d` transforms and lazy video decoding ensures guaranteed 60fps animations, instant playback, and seamless performance across all devices without build overhead.
+### 1. Why this ingestion strategy over the obvious alternative you rejected?
+Instead of building a heavy React/Next.js SPA with external state libraries or hitting the live YouTube Data API on initial page load, I chose a lightweight, vanilla HTML5/ES6 modular architecture. 
 
----
-
-## 2. One trade-off made under the time limit, and what to do with a real week
-* **The Trade-off:** Client-side mock state management for authentication, search filtering, and video modal embedding (using direct iframe integration and localized simulated auth states) rather than a full OAuth2 backend session pipeline with YouTube Data API v3 queries.
-* **With a Real Week:**
-  1. **Full API & OAuth2 Integration:** Connect Google Identity Services OAuth 2.0 with a lightweight Node.js/Go backend to stream real user subscriptions, playlists, and watch history.
-  2. **Custom WebGL / Three.js Shaders:** Upgrade the CSS 3D trigonometric orbit engine to a custom WebGL particle sphere with real-time video textures and depth-of-field post-processing.
-  3. **Adaptive Streaming & Caching:** Implement HLS/DASH video streaming with Service Worker pre-caching for offline capabilities and instantaneous video transitions.
+**Why I rejected the heavier approach:**
+Fetching large playlists and videos dynamically via the YouTube API on first paint introduces API rate limits, network latency, and layout shifts (CLS) on slower connections. For an experiential, video-first landing page, first impressions are critical. By serving curated media directly through native HTML5 video tags, hardware-accelerated CSS `transform: translate3d()` transitions, and modular JS engines, the page achieves instant paint times, zero hydration lag, and silky 60fps animations on mobile and desktop alike.
 
 ---
 
-## 3. Where AI tools were used, and what was personally verified & changed afterward
-* **AI Tool Utilization:** AI was leveraged for accelerated layout prototyping, initial trigonometric orbit formulas (`Math.cos`/`Math.sin` 3D projection math), and generating structural CSS tokens for the Bento layout.
-* **Manual Verification & Refinements:**
-  1. **Aesthetic & Visual Restraint:** Manually stripped all generic glowing canvas particles, bright saturated stock images, and distracting visual clutter to adhere strictly to the "Quiet Luxury / Filmic Dark Mode" design language.
-  2. **Trigonometric Math & Viewport Tuning:** Re-engineered the 3D orbit calculations in `vaultOrbit.js` to dynamically scale `radiusX` (410px down to 130px) based on `window.innerWidth`, preventing orbit cards from overlapping or clipping on tablet and mobile viewports.
-  3. **Accessibility & Keyboard Traps:** Verified and adjusted focus states, added <kbd>Escape</kbd> key handlers to modals, and implemented responsive fluid clamp typography (`clamp()`) across all breakpoints.
+### 2. One trade-off made under the time limit, and what I’d do with a real week
+* **The Trade-off:** I focused heavily on frontend visual fidelity, layout hierarchy, and micro-interactions. Because of the limited time, authentication and search filtering are simulated on the client side, and videos play through embedded modal players rather than a custom backend session with real Google OAuth2 tokens.
+* **What I'd build with a full week:**
+  1. **Live YouTube Data API & OAuth Integration:** Implement Google OAuth2 login so users can pull their actual YouTube subscriptions, watch history, and liked playlists into the custom cinema feed.
+  2. **Custom WebGL / Three.js Canvas:** Upgrade the CSS 3D trigonometric card orbit into an interactive WebGL sphere with dynamic camera physics and real-time video textures.
+  3. **Adaptive Streaming & Audio Visualizers:** Integrate HLS video streaming and native Web Audio API spectrum analyzers for the soundscape section.
+
+---
+
+### 3. Where I used AI tools, and what I personally verified or changed afterward
+* **Where AI helped:** I used AI as an ideation partner for scaffolding the initial HTML structure, calculating the base trigonometric formulas (`Math.cos` and `Math.sin`) for the 3D card orbit, and drafting the CSS grid token system.
+* **What I personally reviewed and refined:**
+  - **Visual Aesthetics & Polish:** Removed generic animations, aggressive glow effects, and loud canvas particles to maintain a refined, "quiet luxury" dark aesthetic. Replaced generic stock imagery with hand-curated, moody photography.
+  - **Dynamic Math & Mobile Tuning:** Refactored `vaultOrbit.js` so that orbital radii (`radiusX` and `radiusY`) calculate dynamically based on `window.innerWidth`, preventing 3D cards from clipping or stacking awkwardly on smaller screens.
+  - **Responsiveness & UX Details:** Hand-tuned CSS breakpoints, converted rigid headline dimensions into fluid `clamp()` values, verified modal accessibility, and added keyboard navigation (<kbd>ESC</kbd> dismiss).
